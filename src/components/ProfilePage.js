@@ -1,11 +1,12 @@
 import React from 'react';
 import {useState, useEffect } from "react";
 
-const ProfilePage = () => {
+const ProfilePage = (props) => {
 
     const [ username, setUsername ] = useState ("");
     const [ id, setId ] = useState ("");
-    const [messages, setMessages ] = useState([])
+    const [messages, setMessages ] = useState([]);
+    const {loggedIn} = props;
 
     const tokenKey = localStorage.getItem("token");
 
@@ -66,8 +67,13 @@ const ProfilePage = () => {
     return (
         <div className = "profileContainer">
             This is the profile page!
-            <div className = "pageTitle">Welcome, {username} </div>
-            <div><em> ID #{id}</em></div>
+            { loggedIn ?
+              <div>
+                <div className = "pageTitle"> Welcome, {username} </div>
+                <div><em> ID #{id}</em></div>
+              </div>
+              : <p> Not logged in.</p>
+            }
             <h2 className = "pageTitle">Messages to me:</h2>
             <div className = "messagesContainer"> This is where my messages would go</div>
             {

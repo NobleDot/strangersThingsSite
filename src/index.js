@@ -15,12 +15,44 @@ import '../src/style.css';
 const COHORT_NAME = '2301-FTB-ET-WEB-FT';
 const BASE_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`
 
+// havigate home 
+
 const App = () => {
+
+    const logout = () => {
+    
+        localStorage.removeItem('token');
+        props.setIsLoggedIn(false);
+        // havigate home 
+        
+        // useEffect(() => {
+    
+        //     // uh, just gonna leave this here for a hard reset of token.
+        //     localStorage.removeItem("token");
+            
+        //     if (props.setLoggedIn(true)) {
+        //         localStorage.removeItem("token");
+        //         console.log("Removed token!");
+    
+        //         // Well, we should set it back to loggedIN being false, right?
+        //         // props.setLoggedIn(false);
+        //         goHome("/");
+        //     } else {
+        //         props.setLoggedIn(false);
+        //         console.log("setLoggedIn was not true. I set it to false. Maybe no Token exist.");
+        //     }
+        //     console.log("Remove the token here!");
+        // }, [])
+    
+        // return (
+        //     <p>We're logging out here!</p>
+        // )
+    }
 
     const [posts, setPosts] = useState([]);
 
     // Logged in status.
-    const [loggedIn, setLoggedIn] = useState(false);
+    // const [loggedIn, setLoggedIn] = useState(false);
 
     // I'll check the API here.
     async function fetchAllPosts() {
@@ -57,7 +89,8 @@ const App = () => {
                 {   // testing ternary operations. checked 2nd thingy to damn you're logged in. used to be an empty string.
                     isLoggedIn ? (
                         <section> 
-                            <Link to=" /logout" className="nav-item">Logout</Link>
+                            {/* <Link to=" /logout" className="nav-item">Logout</Link> */}
+                            <button onClick={logout}> Logout</button>
                         </section>
                         )
                      : (
@@ -80,9 +113,9 @@ const App = () => {
                     <Route path="/posts" element={<Posts propPosts={posts} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} fetchAllPosts= {fetchAllPosts}/>} />
                     <Route path="/posts/add" element={<AddPost posts={posts} setPosts={setPosts}/> } fetchAllPosts= {fetchAllPosts}/>
                     <Route path="/register" element={<RegisterPage/>} />
-                    <Route path="/profile" element={<ProfilePage/>} />
+                    <Route path="/profile" element={<ProfilePage loggedIn={isLoggedIn}/>} />
                     <Route path="/:_id" element={<SinglePost propPosts={posts} setPosts={setPosts} fetchAllPosts= {fetchAllPosts}/>} ></Route>
-                    <Route path="/Logout" element={ <Logout loggedIn={loggedIn} setLoggedIn={ setLoggedIn }/> }/>
+                    {/* <Route path="/Logout" element={ <Logout loggedIn={loggedIn} setLoggedIn={ setLoggedIn }/> }/> */}
                 </Routes>
             </div>
         </BrowserRouter>
