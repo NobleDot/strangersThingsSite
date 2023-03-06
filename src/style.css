@@ -121,6 +121,13 @@
     align-items: center;
 }
 
+.messageContainer{
+    display: flex;
+    flex-direction: column;
+
+    border: 1px solid aquamarine;
+}
+
 .registerContainer{
     display: flex;
     flex-direction: column;
