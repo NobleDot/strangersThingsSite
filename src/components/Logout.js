@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 
 const Logout = (props) => {
+    // const { loggedin, setIsLoggedIn} = props;
     const { isLoggedIn} = props
     const goHome = useNavigate();
 

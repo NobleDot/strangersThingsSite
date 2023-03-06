@@ -22,7 +22,7 @@ const App = () => {
     const logout = () => {
     
         localStorage.removeItem('token');
-        props.setIsLoggedIn(false);
+        setIsLoggedIn(false);
         // havigate home 
         
         // useEffect(() => {
@@ -114,7 +114,7 @@ const App = () => {
                     <Route path="/posts/add" element={<AddPost posts={posts} setPosts={setPosts}/> } fetchAllPosts= {fetchAllPosts}/>
                     <Route path="/register" element={<RegisterPage/>} />
                     <Route path="/profile" element={<ProfilePage loggedIn={isLoggedIn}/>} />
-                    <Route path="/:_id" element={<SinglePost propPosts={posts} setPosts={setPosts} fetchAllPosts= {fetchAllPosts}/>} ></Route>
+                    <Route path="/:_id" element={<SinglePost propPosts={posts} setPosts={setPosts} fetchAllPosts= {fetchAllPosts} setIsLoggedIn={setIsLoggedIn}/>} ></Route>
                     {/* <Route path="/Logout" element={ <Logout loggedIn={loggedIn} setLoggedIn={ setLoggedIn }/> }/> */}
                 </Routes>
             </div>
